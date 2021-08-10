@@ -65,9 +65,112 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-leetcode 刷题12 " class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcode-刷题07" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/" class="article-date">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/" class="article-date">
+  <time datetime="2021-08-10T15:46:45.149Z" itemprop="datePublished">2021-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/">leetcode 刷题07</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="leetcode-刷题07"><a href="#leetcode-刷题07" class="headerlink" title="leetcode 刷题07"></a>leetcode 刷题07</h2><h4 id="669-修剪二叉搜索树"><a href="#669-修剪二叉搜索树" class="headerlink" title="669. 修剪二叉搜索树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trim-a-binary-search-tree/">669. 修剪二叉搜索树</a></h4><p>给定一个二叉搜索树，同时给定最小边界<code>L</code> 和最大边界 <code>R</code>。通过修剪二叉搜索树，使得所有节点的值在<code>[L, R]</code>中 (R&gt;=L) 。你可能需要改变树的根节点，所以结果应当返回修剪好的二叉搜索树的新的根节点。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  0   2</span><br><span class="line"></span><br><span class="line">  L = 1</span><br><span class="line">  R = 2</span><br><span class="line"></span><br><span class="line">输出: </span><br><span class="line">    1</span><br><span class="line">      \</span><br><span class="line">       2</span><br></pre></td></tr></table></figure>
+
+<p><strong>递归</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">trimBST</span><span class="params">(TreeNode root, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.val&gt; R)&#123;</span><br><span class="line">            <span class="keyword">return</span> trimBST(root.left, L, R);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.val&lt; L)&#123;</span><br><span class="line">            <span class="keyword">return</span> trimBST(root.right, L, R);</span><br><span class="line">        &#125;</span><br><span class="line">        root.left = trimBST(root.left, L, R);</span><br><span class="line">        root.right = trimBST(root.right, L, R);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121. 买卖股票的最佳时机"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121. 买卖股票的最佳时机</a></h4><p>给定一个数组，它的第 <em>i</em> 个元素是一支给定股票第 <em>i</em> 天的价格。</p>
+<p>如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。</p>
+<p>注意：你不能在买入股票前卖出股票。</p>
+<p><strong>方法一：暴力查找</strong></p>
+<p>双重循环遍历找到最大值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">int</span> max_ = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;prices.length - <span class="number">1</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j&lt;prices.length; ++j)&#123;</span><br><span class="line">                <span class="keyword">int</span> profit = prices[j] - prices[i];</span><br><span class="line">                <span class="keyword">if</span>(profit &gt; max_)&#123;</span><br><span class="line">                    max_ = profit;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>进一步优化</strong></p>
+<p>我们发现当profit &lt; 0 时，说明此时的<code>i</code>不是价格最低的那天。所以<code> ++i</code>移动到下一天，<code>j = i + 1 </code>移动到<code>i</code> 后一天。与暴力法相比减少了比较次数。基于<strong>KMP</strong>字符串匹配算法思想。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">int</span> max_ = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>,j = <span class="number">1</span>; i&lt;prices.length - <span class="number">1</span>;)&#123;</span><br><span class="line">            <span class="keyword">int</span> profit = prices[j] - prices [i];</span><br><span class="line">            <span class="keyword">if</span>(profit &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                ++i;</span><br><span class="line">                j = i+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(profit &gt; max_)&#123;</span><br><span class="line">                    max_ = profit;</span><br><span class="line">                &#125;</span><br><span class="line">                ++j;</span><br><span class="line">                <span class="keyword">if</span>(j == prices.length)&#123;</span><br><span class="line">                    ++i; </span><br><span class="line">                    j = i + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二：一次遍历</strong></p>
+<p>用一个变量保存当前最小价格，如果这天价格小于最小价格，则更新最小价格，用一个变量保存当前最大利润，计算利润，如果当前利润大于最大利润，更新最大利润。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">int</span> minPrice = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">int</span> maxPro = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;prices.length; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)&#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> profit = prices[i] - minPrice;</span><br><span class="line">            <span class="keyword">if</span>(profit &gt; maxPro)&#123;</span><br><span class="line">                maxPro = profit;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxPro;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表</a></h4><p>反转一个单链表。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</span><br><span class="line">输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法一：迭代</strong></p>
+<p>先用变量保存头结点，令<code>dummy.next = null;</code> 置空，然后让head中的节点下一个节点指向<code>dummy</code>，同时更新<code>dummy</code>节点指向头结点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummy = head;</span><br><span class="line">        head = head.next;</span><br><span class="line">        dummy.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode p;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            p = head.next;</span><br><span class="line">            head.next = dummy;</span><br><span class="line">            dummy = head;</span><br><span class="line">            head = p;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似地，<strong>头插法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        dummy.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode p;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            p = head.next;</span><br><span class="line">            head.next = dummy.next;</span><br><span class="line">            dummy.next = head;</span><br><span class="line">            head = p;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二：递归</strong></p>
+<p>递归版本稍微复杂一些，其关键在于反向工作。假设列表的其余部分已经被反转，现在我该如何反转它前面的部分？</p>
+<p>假设列表为：</p>
+<p>$n_{1}\rightarrow … \rightarrow n_{k-1} \rightarrow n_{k} \rightarrow n_{k+1} \rightarrow … \rightarrow n_{m} \rightarrow \varnothing$</p>
+<p>若从节点 $n_{k+1}$到 $n_{m}$ 已经被反转，而我们正处于$ n_{k}$。$n_{1}\rightarrow … \rightarrow n_{k-1} \rightarrow n_{k} \rightarrow n_{k+1} \leftarrow … \leftarrow n_{m}$</p>
+<p>我们希望 $n_{k+1}$的下一个节点指向 $n_{k}$。</p>
+<p>所以，$n_{k}.next.next = n_{k}$ 。</p>
+<p>要小心的是 $n_{1}$ 的下一个必须指向 Ø 。如果你忽略了这一点，你的链表中可能会产生循环。如果使用大小为 2 的链表测试代码，则可能会捕获此错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode p = reverseList(head.next);</span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="680-验证回文字符串-Ⅱ"><a href="#680-验证回文字符串-Ⅱ" class="headerlink" title="680. 验证回文字符串 Ⅱ"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-palindrome-ii/">680. 验证回文字符串 Ⅱ</a></h4><p>给定一个非空字符串 <code>s</code>，<strong>最多</strong>删除一个字符。判断是否能成为回文字符串。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;aba&quot;</span><br><span class="line">输出: True</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法一：双指针</strong></p>
+<p>初始化两个指针 <code>low</code> 和 <code>high</code> 分别指向字符串的第一个字符和最后一个字符。当  <code>low &lt; hight</code> 时，判断<code>low</code>与<code>high</code>所指向的字符是否相等 ,如果相等 <code>++low; --high</code>; 否则去除 其中一个字符判断剩下子串是否是回文串，如果是，则直接返回<code>true</code>; 否则去除另一个字符继续判断子串是否是回文串，如果不是直接返回<code>false</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validPalindrome</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = s.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt; high)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[low]==s[high])&#123;</span><br><span class="line">                ++low;</span><br><span class="line">                --high;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> currl = low + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> currh = high;</span><br><span class="line">                <span class="keyword">while</span>(currl &lt; currh)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(s[currl]==s[currh])&#123;</span><br><span class="line">                        ++currl;</span><br><span class="line">                        --currh;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                    currl = low;</span><br><span class="line">                    currh = high - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">while</span>(currl &lt; currh)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(s[currl]==s[currh])&#123;</span><br><span class="line">                            ++currl;</span><br><span class="line">                            --currh;</span><br><span class="line">                        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="面试题03-数组中重复的数字"><a href="#面试题03-数组中重复的数字" class="headerlink" title="面试题03. 数组中重复的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">面试题03. 数组中重复的数字</a></h4><p>找出数组中重复的数字。</p>
+<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[2, 3, 1, 0, 2, 5, 3]</span><br><span class="line">输出：2 或 3 </span><br></pre></td></tr></table></figure>
+
+<p><strong>方法一：利用集合的特性</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">int</span> <span class="title">findRepeatNumber</span>(<span class="params"><span class="built_in">int</span>[] nums</span>) &#123;</span></span><br><span class="line"><span class="class">        <span class="title">Set</span>&lt;<span class="title">Integer</span>&gt; <span class="title">set</span> = <span class="title">new</span> <span class="title">HashSet</span>&lt;<span class="title">Integer</span>&gt;();</span></span><br><span class="line"><span class="class">        <span class="title">for</span>(<span class="params"><span class="built_in">int</span> num: nums</span>)&#123;</span></span><br><span class="line"><span class="class">            <span class="title">if</span>(<span class="params">!<span class="built_in">set</span>.add(<span class="params">num</span>)</span>)&#123;</span></span><br><span class="line"><span class="class">                <span class="title">return</span> <span class="title">num</span>;</span></span><br><span class="line"><span class="class">            &#125;</span></span><br><span class="line"><span class="class">        &#125;</span></span><br><span class="line"><span class="class">        <span class="title">return</span> -1;</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二：哈希表</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> findRepeatNumber = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> map = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt; nums.length; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map[nums[i]])&#123;</span><br><span class="line">           <span class="keyword">return</span> nums[i]; </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map[nums[i]] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="面试题04-二维数组中的查找"><a href="#面试题04-二维数组中的查找" class="headerlink" title="面试题04. 二维数组中的查找"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">面试题04. 二维数组中的查找</a></h4><p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">matrix</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">target</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> findNumberIn2DArray = <span class="function"><span class="keyword">function</span>(<span class="params">matrix, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(matrix==[]||matrix[<span class="number">0</span>]==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> row = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> col = matrix[<span class="number">0</span>].length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> maxRow = matrix.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(row &lt;= maxRow &amp;&amp; col &gt;= <span class="number">0</span>)&#123;<span class="comment">//从右上角开始遍历</span></span><br><span class="line">        <span class="keyword">if</span>(matrix[row][col] == target)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (matrix[row][col] &gt; target)&#123;</span><br><span class="line">            --col;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(matrix[row][col] &lt; target)&#123;</span><br><span class="line">            ++row;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/" data-id="cks68ojoy0000e48y37jjdi4r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcode-刷题12 " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9812%20/" class="article-date">
   <time datetime="2021-08-10T15:29:10.479Z" itemprop="datePublished">2021-08-10</time>
 </a>
     
@@ -79,7 +182,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/">leetcode 刷题12</a>
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9812%20/">leetcode 刷题12</a>
     </h1>
   
 
@@ -158,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/" data-id="cks68ag4c000a4o8y46yzg5ck" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9812%20/" data-id="cks68ojp80008e48ygthqhxha" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -170,9 +273,9 @@
 
 
   
-    <article id="post-leetcode 刷题13" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcode-刷题13" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/" class="article-date">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9813/" class="article-date">
   <time datetime="2021-08-10T12:33:55.564Z" itemprop="datePublished">2021-08-10</time>
 </a>
     
@@ -184,7 +287,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/">leetcode 刷题13</a>
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9813/">leetcode 刷题13</a>
     </h1>
   
 
@@ -293,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/" data-id="cks68ag4b00084o8y09rd6xl8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9813/" data-id="cks68ojpb000fe48y65psdokl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -305,9 +408,9 @@
 
 
   
-    <article id="post-leetcode 刷题11" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcode-刷题11" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/" class="article-date">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9811/" class="article-date">
   <time datetime="2021-08-10T12:33:55.559Z" itemprop="datePublished">2021-08-10</time>
 </a>
     
@@ -319,7 +422,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/">leetcode 刷题11</a>
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9811/">leetcode 刷题11</a>
     </h1>
   
 
@@ -373,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/" data-id="cks68ag4900054o8y89a91qkb" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9811/" data-id="cks68ojp60005e48y5cdp7zjj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -385,9 +488,9 @@
 
 
   
-    <article id="post-leetcode 刷题10" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcode-刷题10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/" class="article-date">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9810/" class="article-date">
   <time datetime="2021-08-10T12:33:55.556Z" itemprop="datePublished">2021-08-10</time>
 </a>
     
@@ -399,7 +502,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/">leetcode 刷题10</a>
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9810/">leetcode 刷题10</a>
     </h1>
   
 
@@ -470,7 +573,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/" data-id="cks68ag4700034o8y8puk05t3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9810/" data-id="cks68ojp50003e48y24h48kao" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -482,9 +585,9 @@
 
 
   
-    <article id="post-leetcode 刷题09" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcode-刷题09" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/" class="article-date">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9809/" class="article-date">
   <time datetime="2021-08-10T12:33:55.551Z" itemprop="datePublished">2021-08-10</time>
 </a>
     
@@ -496,7 +599,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/">leetcode 刷题09</a>
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9809/">leetcode 刷题09</a>
     </h1>
   
 
@@ -552,7 +655,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/" data-id="cks68ag4400014o8yghak9srr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9809/" data-id="cks68ojp50004e48y26l22s3c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -564,9 +667,9 @@
 
 
   
-    <article id="post-leetcode 刷题08" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcode-刷题08" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9808/" class="article-date">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9808/" class="article-date">
   <time datetime="2021-08-10T12:33:55.549Z" itemprop="datePublished">2021-08-10</time>
 </a>
     
@@ -578,7 +681,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9808/">leetcode 刷题08</a>
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9808/">leetcode 刷题08</a>
     </h1>
   
 
@@ -608,7 +711,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9808/" data-id="cks68ag4800044o8ygyez30nv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9808/" data-id="cks68ojp20001e48y09n9br3m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -620,112 +723,9 @@
 
 
   
-    <article id="post-leetcode 刷题07" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcode-刷题14" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9807/" class="article-date">
-  <time datetime="2021-08-10T12:33:55.545Z" itemprop="datePublished">2021-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9807/">leetcode 刷题07</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="leetcode-刷题07"><a href="#leetcode-刷题07" class="headerlink" title="leetcode 刷题07"></a>leetcode 刷题07</h2><h4 id="669-修剪二叉搜索树"><a href="#669-修剪二叉搜索树" class="headerlink" title="669. 修剪二叉搜索树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trim-a-binary-search-tree/">669. 修剪二叉搜索树</a></h4><p>给定一个二叉搜索树，同时给定最小边界<code>L</code> 和最大边界 <code>R</code>。通过修剪二叉搜索树，使得所有节点的值在<code>[L, R]</code>中 (R&gt;=L) 。你可能需要改变树的根节点，所以结果应当返回修剪好的二叉搜索树的新的根节点。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  0   2</span><br><span class="line"></span><br><span class="line">  L = 1</span><br><span class="line">  R = 2</span><br><span class="line"></span><br><span class="line">输出: </span><br><span class="line">    1</span><br><span class="line">      \</span><br><span class="line">       2</span><br></pre></td></tr></table></figure>
-
-<p><strong>递归</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">trimBST</span><span class="params">(TreeNode root, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.val&gt; R)&#123;</span><br><span class="line">            <span class="keyword">return</span> trimBST(root.left, L, R);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.val&lt; L)&#123;</span><br><span class="line">            <span class="keyword">return</span> trimBST(root.right, L, R);</span><br><span class="line">        &#125;</span><br><span class="line">        root.left = trimBST(root.left, L, R);</span><br><span class="line">        root.right = trimBST(root.right, L, R);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121. 买卖股票的最佳时机"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121. 买卖股票的最佳时机</a></h4><p>给定一个数组，它的第 <em>i</em> 个元素是一支给定股票第 <em>i</em> 天的价格。</p>
-<p>如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。</p>
-<p>注意：你不能在买入股票前卖出股票。</p>
-<p><strong>方法一：暴力查找</strong></p>
-<p>双重循环遍历找到最大值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">int</span> max_ = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;prices.length - <span class="number">1</span>; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j&lt;prices.length; ++j)&#123;</span><br><span class="line">                <span class="keyword">int</span> profit = prices[j] - prices[i];</span><br><span class="line">                <span class="keyword">if</span>(profit &gt; max_)&#123;</span><br><span class="line">                    max_ = profit;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>进一步优化</strong></p>
-<p>我们发现当profit &lt; 0 时，说明此时的<code>i</code>不是价格最低的那天。所以<code> ++i</code>移动到下一天，<code>j = i + 1 </code>移动到<code>i</code> 后一天。与暴力法相比减少了比较次数。基于<strong>KMP</strong>字符串匹配算法思想。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">int</span> max_ = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>,j = <span class="number">1</span>; i&lt;prices.length - <span class="number">1</span>;)&#123;</span><br><span class="line">            <span class="keyword">int</span> profit = prices[j] - prices [i];</span><br><span class="line">            <span class="keyword">if</span>(profit &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                ++i;</span><br><span class="line">                j = i+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(profit &gt; max_)&#123;</span><br><span class="line">                    max_ = profit;</span><br><span class="line">                &#125;</span><br><span class="line">                ++j;</span><br><span class="line">                <span class="keyword">if</span>(j == prices.length)&#123;</span><br><span class="line">                    ++i; </span><br><span class="line">                    j = i + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法二：一次遍历</strong></p>
-<p>用一个变量保存当前最小价格，如果这天价格小于最小价格，则更新最小价格，用一个变量保存当前最大利润，计算利润，如果当前利润大于最大利润，更新最大利润。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">int</span> minPrice = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">int</span> maxPro = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;prices.length; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i] &lt; minPrice)&#123;</span><br><span class="line">                minPrice = prices[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> profit = prices[i] - minPrice;</span><br><span class="line">            <span class="keyword">if</span>(profit &gt; maxPro)&#123;</span><br><span class="line">                maxPro = profit;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxPro;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表</a></h4><p>反转一个单链表。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</span><br><span class="line">输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法一：迭代</strong></p>
-<p>先用变量保存头结点，令<code>dummy.next = null;</code> 置空，然后让head中的节点下一个节点指向<code>dummy</code>，同时更新<code>dummy</code>节点指向头结点</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummy = head;</span><br><span class="line">        head = head.next;</span><br><span class="line">        dummy.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode p;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            p = head.next;</span><br><span class="line">            head.next = dummy;</span><br><span class="line">            dummy = head;</span><br><span class="line">            head = p;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>类似地，<strong>头插法</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        dummy.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode p;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            p = head.next;</span><br><span class="line">            head.next = dummy.next;</span><br><span class="line">            dummy.next = head;</span><br><span class="line">            head = p;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法二：递归</strong></p>
-<p>递归版本稍微复杂一些，其关键在于反向工作。假设列表的其余部分已经被反转，现在我该如何反转它前面的部分？</p>
-<p>假设列表为：</p>
-<p>$n_{1}\rightarrow … \rightarrow n_{k-1} \rightarrow n_{k} \rightarrow n_{k+1} \rightarrow … \rightarrow n_{m} \rightarrow \varnothing$</p>
-<p>若从节点 $n_{k+1}$到 $n_{m}$ 已经被反转，而我们正处于$ n_{k}$。$n_{1}\rightarrow … \rightarrow n_{k-1} \rightarrow n_{k} \rightarrow n_{k+1} \leftarrow … \leftarrow n_{m}$</p>
-<p>我们希望 $n_{k+1}$的下一个节点指向 $n_{k}$。</p>
-<p>所以，$n_{k}.next.next = n_{k}$ 。</p>
-<p>要小心的是 $n_{1}$ 的下一个必须指向 Ø 。如果你忽略了这一点，你的链表中可能会产生循环。如果使用大小为 2 的链表测试代码，则可能会捕获此错误。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode p = reverseList(head.next);</span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="680-验证回文字符串-Ⅱ"><a href="#680-验证回文字符串-Ⅱ" class="headerlink" title="680. 验证回文字符串 Ⅱ"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-palindrome-ii/">680. 验证回文字符串 Ⅱ</a></h4><p>给定一个非空字符串 <code>s</code>，<strong>最多</strong>删除一个字符。判断是否能成为回文字符串。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;aba&quot;</span><br><span class="line">输出: True</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法一：双指针</strong></p>
-<p>初始化两个指针 <code>low</code> 和 <code>high</code> 分别指向字符串的第一个字符和最后一个字符。当  <code>low &lt; hight</code> 时，判断<code>low</code>与<code>high</code>所指向的字符是否相等 ,如果相等 <code>++low; --high</code>; 否则去除 其中一个字符判断剩下子串是否是回文串，如果是，则直接返回<code>true</code>; 否则去除另一个字符继续判断子串是否是回文串，如果不是直接返回<code>false</code>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validPalindrome</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = s.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt; high)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[low]==s[high])&#123;</span><br><span class="line">                ++low;</span><br><span class="line">                --high;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> currl = low + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> currh = high;</span><br><span class="line">                <span class="keyword">while</span>(currl &lt; currh)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(s[currl]==s[currh])&#123;</span><br><span class="line">                        ++currl;</span><br><span class="line">                        --currh;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                    currl = low;</span><br><span class="line">                    currh = high - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">while</span>(currl &lt; currh)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(s[currl]==s[currh])&#123;</span><br><span class="line">                            ++currl;</span><br><span class="line">                            --currh;</span><br><span class="line">                        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="面试题03-数组中重复的数字"><a href="#面试题03-数组中重复的数字" class="headerlink" title="面试题03. 数组中重复的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">面试题03. 数组中重复的数字</a></h4><p>找出数组中重复的数字。</p>
-<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[2, 3, 1, 0, 2, 5, 3]</span><br><span class="line">输出：2 或 3 </span><br></pre></td></tr></table></figure>
-
-<p><strong>方法一：利用集合的特性</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">int</span> <span class="title">findRepeatNumber</span>(<span class="params"><span class="built_in">int</span>[] nums</span>) &#123;</span></span><br><span class="line"><span class="class">        <span class="title">Set</span>&lt;<span class="title">Integer</span>&gt; <span class="title">set</span> = <span class="title">new</span> <span class="title">HashSet</span>&lt;<span class="title">Integer</span>&gt;();</span></span><br><span class="line"><span class="class">        <span class="title">for</span>(<span class="params"><span class="built_in">int</span> num: nums</span>)&#123;</span></span><br><span class="line"><span class="class">            <span class="title">if</span>(<span class="params">!<span class="built_in">set</span>.add(<span class="params">num</span>)</span>)&#123;</span></span><br><span class="line"><span class="class">                <span class="title">return</span> <span class="title">num</span>;</span></span><br><span class="line"><span class="class">            &#125;</span></span><br><span class="line"><span class="class">        &#125;</span></span><br><span class="line"><span class="class">        <span class="title">return</span> -1;</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>方法二：哈希表</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> findRepeatNumber = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> map = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt; nums.length; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(map[nums[i]])&#123;</span><br><span class="line">           <span class="keyword">return</span> nums[i]; </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            map[nums[i]] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="面试题04-二维数组中的查找"><a href="#面试题04-二维数组中的查找" class="headerlink" title="面试题04. 二维数组中的查找"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">面试题04. 二维数组中的查找</a></h4><p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">matrix</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">target</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> findNumberIn2DArray = <span class="function"><span class="keyword">function</span>(<span class="params">matrix, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(matrix==[]||matrix[<span class="number">0</span>]==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> row = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> col = matrix[<span class="number">0</span>].length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> maxRow = matrix.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(row &lt;= maxRow &amp;&amp; col &gt;= <span class="number">0</span>)&#123;<span class="comment">//从右上角开始遍历</span></span><br><span class="line">        <span class="keyword">if</span>(matrix[row][col] == target)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (matrix[row][col] &gt; target)&#123;</span><br><span class="line">            --col;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(matrix[row][col] &lt; target)&#123;</span><br><span class="line">            ++row;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9807/" data-id="cks68ag4000004o8y3xjvasm9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode 刷题14" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9814/" class="article-date">
+    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9814/" class="article-date">
   <time datetime="2021-08-10T12:33:55.539Z" itemprop="datePublished">2021-08-10</time>
 </a>
     
@@ -737,7 +737,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9814/">leetcode 刷题14</a>
+      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9814/">leetcode 刷题14</a>
     </h1>
   
 
@@ -786,7 +786,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9814/" data-id="cks68ag4f000f4o8y3jw465uk" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9814/" data-id="cks68ojp9000ae48yhqi6ap19" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -829,7 +829,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/%E4%B8%80%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6/" data-id="cks68ag4d000d4o8y1xht79og" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/%E4%B8%80%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6/" data-id="cks68ojpa000de48yd961h4h0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag">高等数学</a></li></ul>
@@ -886,23 +886,23 @@
       <ul>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/">leetcode 刷题12</a>
+            <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/">leetcode 刷题07</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/">leetcode 刷题13</a>
+            <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9812%20/">leetcode 刷题12</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/">leetcode 刷题11</a>
+            <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9813/">leetcode 刷题13</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/">leetcode 刷题10</a>
+            <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9811/">leetcode 刷题11</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/">leetcode 刷题09</a>
+            <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9810/">leetcode 刷题10</a>
           </li>
         
       </ul>
