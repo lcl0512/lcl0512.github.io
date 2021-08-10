@@ -65,6 +65,117 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode-刷题14" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/11/leetcode-%E5%88%B7%E9%A2%9814/" class="article-date">
+  <time datetime="2021-08-10T16:22:09.000Z" itemprop="datePublished">2021-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/11/leetcode-%E5%88%B7%E9%A2%9814/">leetcode 刷题14</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="leetcode-刷题14"><a href="#leetcode-刷题14" class="headerlink" title="leetcode 刷题14"></a>leetcode 刷题14</h2><h4 id="面试题10-I-斐波那契数列"><a href="#面试题10-I-斐波那契数列" class="headerlink" title="面试题10- I. 斐波那契数列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/">面试题10- I. 斐波那契数列</a></h4><p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项。斐波那契数列的定义如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F(0) = 0,   F(1) = 1</span><br><span class="line">F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.</span><br></pre></td></tr></table></figure>
+
+<p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p><strong>方法一：迭代</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> next = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> prev = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> x = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">        <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = prev;</span><br><span class="line">            prev = next;</span><br><span class="line">            next = (next+ tmp) % x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev%x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="面试题10-II-青蛙跳台阶问题"><a href="#面试题10-II-青蛙跳台阶问题" class="headerlink" title="面试题10- II. 青蛙跳台阶问题"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/">面试题10- II. 青蛙跳台阶问题</a></h4><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 <code>n</code> 级的台阶总共有多少种跳法。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法一：迭代</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> prev = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> next = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">        <span class="keyword">while</span>(--n)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = (prev + next)%x;</span><br><span class="line">            prev = next;</span><br><span class="line">            next = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="面试题11-旋转数组的最小数字"><a href="#面试题11-旋转数组的最小数字" class="headerlink" title="面试题11. 旋转数组的最小数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">面试题11. 旋转数组的最小数字</a></h4><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 <code>[3,4,5,1,2]</code> 为 <code>[1,2,3,4,5]</code> 的一个旋转，该数组的最小值为1。 </p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,4,5,1,2]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; numbers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = numbers.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span>(low &lt; high)&#123;</span><br><span class="line">            mid = low + (high-low)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(numbers[mid] &gt; numbers[high])&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(numbers[mid] &lt; numbers[high])&#123;</span><br><span class="line">                high = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                --high;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> numbers[low];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="191-位1的个数"><a href="#191-位1的个数" class="headerlink" title="191. 位1的个数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-1-bits/">191. 位1的个数</a></h4><p>编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B1%89%E6%98%8E%E9%87%8D%E9%87%8F">汉明重量</a>）。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：00000000000000000000000000001011</span><br><span class="line">输出：3</span><br><span class="line">解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 &#x27;1&#x27;。</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法一</strong></p>
+<p>判断每一位是否为1</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            n&amp;<span class="number">1</span> ? ++count: count;</span><br><span class="line">            n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二</strong></p>
+<p>将末位的 <code>1</code> 反转，我们只需要将  <code>n</code> 与 <code>n-1</code> 按位与。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            ++count;</span><br><span class="line">            n&amp;=(n<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/11/leetcode-%E5%88%B7%E9%A2%9814/" data-id="cks69x1c6000g9o8y9t3pc99e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcode-刷题99" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/11/leetcode-%E5%88%B7%E9%A2%9899/" class="article-date">
+  <time datetime="2021-08-10T16:22:09.000Z" itemprop="datePublished">2021-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/11/leetcode-%E5%88%B7%E9%A2%9899/">leetcode 刷题99</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/11/leetcode-%E5%88%B7%E9%A2%9899/" data-id="cks69x1c7000i9o8y4zv9amn2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-leetcode-刷题07" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/" class="article-date">
@@ -156,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/" data-id="cks69qi1v00011c8yf0l71gno" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/" data-id="cks69x1bk00009o8ygmwoc17b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -261,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9812%20/" data-id="cks69qi2200081c8y17oh47fv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9812%20/" data-id="cks69x1c5000e9o8ydj6e08wh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -396,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9813/" data-id="cks69qi23000a1c8y2ygv0x18" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9813/" data-id="cks69x1c4000d9o8y9sn63c6s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -476,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9811/" data-id="cks69qi1z00041c8y9kcf02zq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9811/" data-id="cks69x1bv00059o8y0qn4dw6u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -573,7 +684,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9810/" data-id="cks69qi2000051c8y7hl4brhg" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9810/" data-id="cks69x1bu00049o8y6c5cc6d4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -655,7 +766,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9809/" data-id="cks69qi1y00031c8yhtzc7g26" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9809/" data-id="cks69x1bt00039o8ycglzblmg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -711,82 +822,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9808/" data-id="cks69qi1p00001c8yfnie2hk3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode-刷题14" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9814/" class="article-date">
-  <time datetime="2021-08-10T12:33:55.539Z" itemprop="datePublished">2021-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9814/">leetcode 刷题14</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="leetcode-刷题14"><a href="#leetcode-刷题14" class="headerlink" title="leetcode 刷题14"></a>leetcode 刷题14</h2><h4 id="面试题10-I-斐波那契数列"><a href="#面试题10-I-斐波那契数列" class="headerlink" title="面试题10- I. 斐波那契数列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/">面试题10- I. 斐波那契数列</a></h4><p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项。斐波那契数列的定义如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F(0) = 0,   F(1) = 1</span><br><span class="line">F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.</span><br></pre></td></tr></table></figure>
-
-<p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
-<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
-<p><strong>方法一：迭代</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> next = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> prev = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> x = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">        <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = prev;</span><br><span class="line">            prev = next;</span><br><span class="line">            next = (next+ tmp) % x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev%x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="面试题10-II-青蛙跳台阶问题"><a href="#面试题10-II-青蛙跳台阶问题" class="headerlink" title="面试题10- II. 青蛙跳台阶问题"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/">面试题10- II. 青蛙跳台阶问题</a></h4><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 <code>n</code> 级的台阶总共有多少种跳法。</p>
-<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法一：迭代</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> prev = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> next = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">        <span class="keyword">while</span>(--n)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = (prev + next)%x;</span><br><span class="line">            prev = next;</span><br><span class="line">            next = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="面试题11-旋转数组的最小数字"><a href="#面试题11-旋转数组的最小数字" class="headerlink" title="面试题11. 旋转数组的最小数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">面试题11. 旋转数组的最小数字</a></h4><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 <code>[3,4,5,1,2]</code> 为 <code>[1,2,3,4,5]</code> 的一个旋转，该数组的最小值为1。 </p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,4,5,1,2]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; numbers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = numbers.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span>(low &lt; high)&#123;</span><br><span class="line">            mid = low + (high-low)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(numbers[mid] &gt; numbers[high])&#123;</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(numbers[mid] &lt; numbers[high])&#123;</span><br><span class="line">                high = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                --high;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> numbers[low];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="191-位1的个数"><a href="#191-位1的个数" class="headerlink" title="191. 位1的个数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-1-bits/">191. 位1的个数</a></h4><p>编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B1%89%E6%98%8E%E9%87%8D%E9%87%8F">汉明重量</a>）。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：00000000000000000000000000001011</span><br><span class="line">输出：3</span><br><span class="line">解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 &#x27;1&#x27;。</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法一</strong></p>
-<p>判断每一位是否为1</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            n&amp;<span class="number">1</span> ? ++count: count;</span><br><span class="line">            n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法二</strong></p>
-<p>将末位的 <code>1</code> 反转，我们只需要将  <code>n</code> 与 <code>n-1</code> 按位与。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            ++count;</span><br><span class="line">            n&amp;=(n<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9814/" data-id="cks69qi24000d1c8y8liiflip" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode-%E5%88%B7%E9%A2%9808/" data-id="cks69x1br00019o8yh5tpcr3t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
@@ -829,7 +865,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/%E4%B8%80%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6/" data-id="cks69qi2b000j1c8yd02i1nug" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/%E4%B8%80%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6/" data-id="cks69x1c9000k9o8y2vl90z5w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag">高等数学</a></li></ul>
@@ -886,6 +922,14 @@
       <ul>
         
           <li>
+            <a href="/2021/08/11/leetcode-%E5%88%B7%E9%A2%9814/">leetcode 刷题14</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/leetcode-%E5%88%B7%E9%A2%9899/">leetcode 刷题99</a>
+          </li>
+        
+          <li>
             <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9807/">leetcode 刷题07</a>
           </li>
         
@@ -895,14 +939,6 @@
         
           <li>
             <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9813/">leetcode 刷题13</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9811/">leetcode 刷题11</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/10/leetcode-%E5%88%B7%E9%A2%9810/">leetcode 刷题10</a>
           </li>
         
       </ul>
