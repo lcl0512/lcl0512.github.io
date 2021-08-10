@@ -65,6 +65,111 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode 刷题12 " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/" class="article-date">
+  <time datetime="2021-08-10T15:29:10.479Z" itemprop="datePublished">2021-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/">leetcode 刷题12</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="leetcode-刷题12"><a href="#leetcode-刷题12" class="headerlink" title="leetcode 刷题12"></a>leetcode 刷题12</h2><h4 id="168-Excel表列名称"><a href="#168-Excel表列名称" class="headerlink" title="168. Excel表列名称"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/excel-sheet-column-title/">168. Excel表列名称</a></h4><p>给定一个正整数，返回它在 Excel 表中相对应的列名称。</p>
+<p>例如，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1 -&gt; A</span><br><span class="line">2 -&gt; B</span><br><span class="line">3 -&gt; C</span><br><span class="line">...</span><br><span class="line">26 -&gt; Z</span><br><span class="line">27 -&gt; AA</span><br><span class="line">28 -&gt; AB </span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1</span><br><span class="line">输出: &quot;A&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>思路</strong><br>这是一个十进制转二十六进制问题。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span>* res = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>)*len);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">0</span>)&#123;</span><br><span class="line">        --n;</span><br><span class="line">        res = <span class="built_in">realloc</span>(res, <span class="keyword">sizeof</span>(<span class="keyword">char</span>)*(++len));</span><br><span class="line">        res[i++] = <span class="string">&#x27;A&#x27;</span> + n % <span class="number">26</span>;</span><br><span class="line">        n /= <span class="number">26</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    res[i] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i/<span class="number">2</span>;++j)&#123;</span><br><span class="line">        <span class="keyword">char</span> tmp = res[j];</span><br><span class="line">        res[j] = res[i - j - <span class="number">1</span>];</span><br><span class="line">        res[i - j - <span class="number">1</span>] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169. 多数元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element/">169. 多数元素</a></h4><p>给定一个大小为 <em>n</em> 的数组，找到其中的多数元素。多数元素是指在数组中出现次数<strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,3]</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
+<p><strong>方法一：哈希表</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(nums[i]))&#123;</span><br><span class="line">                <span class="keyword">int</span> count = map.get(nums[i]);</span><br><span class="line">                <span class="keyword">if</span>(++count&gt;len/<span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">                map.put(nums[i], count);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                map.put(nums[i], <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二：排序</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums[nums.length/<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>方法三：递归</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countNum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> num, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = low;i&lt;=high; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==num)&#123;</span><br><span class="line">                ++count;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(low==high)&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[low];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = low + (high-low)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> left = majorityElement(nums, low , mid);</span><br><span class="line">        <span class="keyword">int</span> right = majorityElement(nums, mid+<span class="number">1</span>, high);</span><br><span class="line">        <span class="keyword">if</span>(left == right)&#123;</span><br><span class="line">            <span class="keyword">return</span> left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count1 = countNum(nums, left, low, mid);</span><br><span class="line">        <span class="keyword">int</span> count2 = countNum(nums, right, mid+<span class="number">1</span>, high);</span><br><span class="line">        <span class="keyword">return</span> count1&gt;count2?left:right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> majorityElement(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>方法四：Boyer-Moore 投票算法</strong></p>
+<p><strong>思路</strong></p>
+<p>如果我们把众数记为 <code>+1</code>，把其他数记为<code> -1</code>，将它们全部加起来，显然和大于 <code>0</code>，从结果本身我们可以看出众数比其他数多。</p>
+<p><strong>算法</strong></p>
+<p>Boyer-Moore 算法的本质和方法四中的分治十分类似。我们首先给出 Boyer-Moore 算法的详细步骤：</p>
+<p>我们维护一个候选众数 <code>candidate</code> 和它出现的次数 <code>count</code>。初始时 <code>candidate</code> 可以为任意值，<code>count</code> 为 0；</p>
+<p>我们遍历数组 <code>nums</code> 中的所有元素，对于每个元素 <code>x</code>，在判断 <code>x</code> 之前，如果 <code>count</code> 的值为 0，我们先将 x 的值赋予 <code>candidate</code>，随后我们判断 x：</p>
+<p>如果 <code>x</code> 与 <code>candidate</code> 相等，那么计数器 <code>count</code> 的值增加 1；</p>
+<p>如果 <code>x</code> 与 <code>candidate</code> 不等，那么计数器 <code>count</code> 的值减少 1。</p>
+<p>在遍历完成后，<code>candidate</code> 即为整个数组的众数。</p>
+<p>我们举一个具体的例子，例如下面的这个数组：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br></pre></td></tr></table></figure>
+<p>在遍历到数组中的第一个元素以及每个在 | 之后的元素时，<code>candidate</code> 都会因为 <code>count</code> 的值变为 0 而发生改变。最后一次 <code>candidate</code> 的值从 5 变为 7，也就是这个数组中的众数。</p>
+<p>Boyer-Moore 算法的正确性较难证明，这里给出一种较为详细的用例子辅助证明的思路，供读者参考：</p>
+<p>首先我们根据算法步骤中对 <code>count</code> 的定义，可以发现：在对整个数组进行遍历的过程中，<code>count</code> 的值一定非负。这是因为如果 <code>count</code> 的值为 0，那么在这一轮遍历的开始时刻，我们会将 <code>x</code> 的值赋予 <code>candidate</code> 并在接下来的一步中将 <code>count</code> 的值增加 1。因此<code>count</code> 的值在遍历的过程中一直保持非负。</p>
+<p>那么 <code>count</code> 本身除了计数器之外，还有什么更深层次的意义呢？我们还是以数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br></pre></td></tr></table></figure>
+<p>作为例子，首先写下它在每一步遍历时 <code>candidate</code> 和 <code>count</code> 的值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br><span class="line">candidate:  7  7  7  7  7  7   5  5   5  5  5  5   7  7  7  7</span><br><span class="line">count:      1  2  1  2  1  0   1  0   1  2  1  0   1  2  3  4</span><br></pre></td></tr></table></figure>
+<p>我们再定义一个变量 <code>value</code>，它和真正的众数 <code>maj</code> 绑定。在每一步遍历时，如果当前的数 <code>x </code>和 <code>maj</code> 相等，那么 <code>value</code> 的值加 1，否则减 1。<code>value</code> 的实际意义即为：到当前的这一步遍历为止，众数出现的次数比非众数多出了多少次。我们将 <code>value</code> 的值也写在下方：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br><span class="line">value:      1  2  1  2  1  0  -1  0  -1 -2 -1  0   1  2  3  4</span><br></pre></td></tr></table></figure>
+<p>有没有发现什么？我们将 <code>count</code> 和 <code>value</code> 放在一起：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br><span class="line">count:      1  2  1  2  1  0   1  0   1  2  1  0   1  2  3  4</span><br><span class="line">value:      1  2  1  2  1  0  -1  0  -1 -2 -1  0   1  2  3  4</span><br></pre></td></tr></table></figure>
+<p>发现在每一步遍历中，<code>count</code> 和 <code>value</code> 要么相等，要么互为相反数！并且在候选众数 <code>candidate</code> 就是 <code>maj</code> 时，它们相等，<code>candidate</code> 是其它的数时，它们互为相反数！</p>
+<p>为什么会有这么奇妙的性质呢？这并不难证明：我们将候选众数 <code>candidate</code> 保持不变的连续的遍历称为「一段」。在同一段中，<code>count</code> 的值是根据 <code>candidate == x</code> 的判断进行加减的。那么如果 <code>candidate</code> 恰好为 <code>maj</code>，那么在这一段中，<code>count</code> 和 <code>value</code> 的变化是同步的；如果 <code>candidate</code> 不为 <code>maj</code>，那么在这一段中 <code>count</code> 和 <code>value</code> 的变化是相反的。因此就有了这样一个奇妙的性质。</p>
+<p>这样以来，由于：</p>
+<p>我们证明了 <code>count</code> 的值一直为非负，在最后一步遍历结束后也是如此；</p>
+<p>由于<code> value</code> 的值与真正的众数 <code>maj</code> 绑定，并且它表示「众数出现的次数比非众数多出了多少次」，那么在最后一步遍历结束后，<code>value</code> 的值为正数；</p>
+<p>在最后一步遍历结束后，<code>count</code> 非负，<code>value</code> 为正数，所以它们不可能互为相反数，只可能相等，即 <code>count == value</code>。因此在最后「一段」中，<code>count</code> 的 <code>value</code> 的变化是同步的，也就是说，<code>candidate</code> 中存储的候选众数就是真正的众数 <code>maj</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> candate = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count==<span class="number">0</span>)&#123;</span><br><span class="line">                candate = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            count += candate==nums[i] ? <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> candate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="171-Excel表列序号"><a href="#171-Excel表列序号" class="headerlink" title="171. Excel表列序号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/excel-sheet-column-number/">171. Excel表列序号</a></h4><p>给定一个Excel表格中的列名称，返回其相应的列序号。</p>
+<p>例如，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; 1</span><br><span class="line">B -&gt; 2</span><br><span class="line">C -&gt; 3</span><br><span class="line">...</span><br><span class="line">Z -&gt; 26</span><br><span class="line">AA -&gt; 27</span><br><span class="line">AB -&gt; 28 </span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">titleToNumber</span><span class="params">(<span class="keyword">char</span> * s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">int</span> colum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)&#123;</span><br><span class="line">        colum += (s[i] - <span class="string">&#x27;A&#x27;</span> + <span class="number">1</span>) * <span class="built_in">pow</span>(<span class="number">26</span>, len-i<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> colum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h4><p>给定一个整数 <em>n</em>，返回 <em>n</em>! 结果尾数中零的数量。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 3</span><br><span class="line">输出: 0</span><br><span class="line">解释: 3! = 6, 尾数中没有零。</span><br></pre></td></tr></table></figure>
+<p><strong>方法一</strong><br>计算5点倍数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">trailingZeroes</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">5</span>; i &lt;= n; i+=<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = i;</span><br><span class="line">        <span class="keyword">while</span>(tmp%<span class="number">5</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            count += <span class="number">1</span>;</span><br><span class="line">            tmp/=<span class="number">5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>方法二</strong></p>
+<ol>
+<li>计算 <code>n</code> 中5的倍数。</li>
+<li>计算 <code>n/5</code>中5的倍数。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">trailingZeroes</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)&#123;</span><br><span class="line">        n /= <span class="number">5</span>;</span><br><span class="line">        count += n; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/" data-id="cks680z6x0008uc8y1xhncdjk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-leetcode 刷题13" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/" class="article-date">
@@ -74,6 +179,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/">leetcode 刷题13</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -178,102 +293,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/" data-id="cks67mnfa0007f88yfslogxn7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/" data-id="cks680z6z000duc8yb0nu153o" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
 
-
-  
-    <article id="post-leetcode 刷题12 " class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/" class="article-date">
-  <time datetime="2021-08-10T12:33:55.561Z" itemprop="datePublished">2021-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="leetcode-刷题12"><a href="#leetcode-刷题12" class="headerlink" title="leetcode 刷题12"></a>leetcode 刷题12</h2><h4 id="168-Excel表列名称"><a href="#168-Excel表列名称" class="headerlink" title="168. Excel表列名称"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/excel-sheet-column-title/">168. Excel表列名称</a></h4><p>给定一个正整数，返回它在 Excel 表中相对应的列名称。</p>
-<p>例如，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1 -&gt; A</span><br><span class="line">2 -&gt; B</span><br><span class="line">3 -&gt; C</span><br><span class="line">...</span><br><span class="line">26 -&gt; Z</span><br><span class="line">27 -&gt; AA</span><br><span class="line">28 -&gt; AB </span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1</span><br><span class="line">输出: &quot;A&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>思路</strong><br>这是一个十进制转二十六进制问题。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span>* res = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>)*len);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">0</span>)&#123;</span><br><span class="line">        --n;</span><br><span class="line">        res = <span class="built_in">realloc</span>(res, <span class="keyword">sizeof</span>(<span class="keyword">char</span>)*(++len));</span><br><span class="line">        res[i++] = <span class="string">&#x27;A&#x27;</span> + n % <span class="number">26</span>;</span><br><span class="line">        n /= <span class="number">26</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    res[i] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i/<span class="number">2</span>;++j)&#123;</span><br><span class="line">        <span class="keyword">char</span> tmp = res[j];</span><br><span class="line">        res[j] = res[i - j - <span class="number">1</span>];</span><br><span class="line">        res[i - j - <span class="number">1</span>] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169. 多数元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element/">169. 多数元素</a></h4><p>给定一个大小为 <em>n</em> 的数组，找到其中的多数元素。多数元素是指在数组中出现次数<strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
-<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,3]</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
-<p><strong>方法一：哈希表</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(nums[i]))&#123;</span><br><span class="line">                <span class="keyword">int</span> count = map.get(nums[i]);</span><br><span class="line">                <span class="keyword">if</span>(++count&gt;len/<span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">                map.put(nums[i], count);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                map.put(nums[i], <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法二：排序</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums[nums.length/<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>方法三：递归</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countNum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> num, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = low;i&lt;=high; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==num)&#123;</span><br><span class="line">                ++count;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(low==high)&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[low];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = low + (high-low)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> left = majorityElement(nums, low , mid);</span><br><span class="line">        <span class="keyword">int</span> right = majorityElement(nums, mid+<span class="number">1</span>, high);</span><br><span class="line">        <span class="keyword">if</span>(left == right)&#123;</span><br><span class="line">            <span class="keyword">return</span> left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count1 = countNum(nums, left, low, mid);</span><br><span class="line">        <span class="keyword">int</span> count2 = countNum(nums, right, mid+<span class="number">1</span>, high);</span><br><span class="line">        <span class="keyword">return</span> count1&gt;count2?left:right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> majorityElement(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>方法四：Boyer-Moore 投票算法</strong></p>
-<p><strong>思路</strong></p>
-<p>如果我们把众数记为 <code>+1</code>，把其他数记为<code> -1</code>，将它们全部加起来，显然和大于 <code>0</code>，从结果本身我们可以看出众数比其他数多。</p>
-<p><strong>算法</strong></p>
-<p>Boyer-Moore 算法的本质和方法四中的分治十分类似。我们首先给出 Boyer-Moore 算法的详细步骤：</p>
-<p>我们维护一个候选众数 <code>candidate</code> 和它出现的次数 <code>count</code>。初始时 <code>candidate</code> 可以为任意值，<code>count</code> 为 0；</p>
-<p>我们遍历数组 <code>nums</code> 中的所有元素，对于每个元素 <code>x</code>，在判断 <code>x</code> 之前，如果 <code>count</code> 的值为 0，我们先将 x 的值赋予 <code>candidate</code>，随后我们判断 x：</p>
-<p>如果 <code>x</code> 与 <code>candidate</code> 相等，那么计数器 <code>count</code> 的值增加 1；</p>
-<p>如果 <code>x</code> 与 <code>candidate</code> 不等，那么计数器 <code>count</code> 的值减少 1。</p>
-<p>在遍历完成后，<code>candidate</code> 即为整个数组的众数。</p>
-<p>我们举一个具体的例子，例如下面的这个数组：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br></pre></td></tr></table></figure>
-<p>在遍历到数组中的第一个元素以及每个在 | 之后的元素时，<code>candidate</code> 都会因为 <code>count</code> 的值变为 0 而发生改变。最后一次 <code>candidate</code> 的值从 5 变为 7，也就是这个数组中的众数。</p>
-<p>Boyer-Moore 算法的正确性较难证明，这里给出一种较为详细的用例子辅助证明的思路，供读者参考：</p>
-<p>首先我们根据算法步骤中对 <code>count</code> 的定义，可以发现：在对整个数组进行遍历的过程中，<code>count</code> 的值一定非负。这是因为如果 <code>count</code> 的值为 0，那么在这一轮遍历的开始时刻，我们会将 <code>x</code> 的值赋予 <code>candidate</code> 并在接下来的一步中将 <code>count</code> 的值增加 1。因此<code>count</code> 的值在遍历的过程中一直保持非负。</p>
-<p>那么 <code>count</code> 本身除了计数器之外，还有什么更深层次的意义呢？我们还是以数组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br></pre></td></tr></table></figure>
-<p>作为例子，首先写下它在每一步遍历时 <code>candidate</code> 和 <code>count</code> 的值：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br><span class="line">candidate:  7  7  7  7  7  7   5  5   5  5  5  5   7  7  7  7</span><br><span class="line">count:      1  2  1  2  1  0   1  0   1  2  1  0   1  2  3  4</span><br></pre></td></tr></table></figure>
-<p>我们再定义一个变量 <code>value</code>，它和真正的众数 <code>maj</code> 绑定。在每一步遍历时，如果当前的数 <code>x </code>和 <code>maj</code> 相等，那么 <code>value</code> 的值加 1，否则减 1。<code>value</code> 的实际意义即为：到当前的这一步遍历为止，众数出现的次数比非众数多出了多少次。我们将 <code>value</code> 的值也写在下方：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br><span class="line">value:      1  2  1  2  1  0  -1  0  -1 -2 -1  0   1  2  3  4</span><br></pre></td></tr></table></figure>
-<p>有没有发现什么？我们将 <code>count</code> 和 <code>value</code> 放在一起：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</span><br><span class="line">count:      1  2  1  2  1  0   1  0   1  2  1  0   1  2  3  4</span><br><span class="line">value:      1  2  1  2  1  0  -1  0  -1 -2 -1  0   1  2  3  4</span><br></pre></td></tr></table></figure>
-<p>发现在每一步遍历中，<code>count</code> 和 <code>value</code> 要么相等，要么互为相反数！并且在候选众数 <code>candidate</code> 就是 <code>maj</code> 时，它们相等，<code>candidate</code> 是其它的数时，它们互为相反数！</p>
-<p>为什么会有这么奇妙的性质呢？这并不难证明：我们将候选众数 <code>candidate</code> 保持不变的连续的遍历称为「一段」。在同一段中，<code>count</code> 的值是根据 <code>candidate == x</code> 的判断进行加减的。那么如果 <code>candidate</code> 恰好为 <code>maj</code>，那么在这一段中，<code>count</code> 和 <code>value</code> 的变化是同步的；如果 <code>candidate</code> 不为 <code>maj</code>，那么在这一段中 <code>count</code> 和 <code>value</code> 的变化是相反的。因此就有了这样一个奇妙的性质。</p>
-<p>这样以来，由于：</p>
-<p>我们证明了 <code>count</code> 的值一直为非负，在最后一步遍历结束后也是如此；</p>
-<p>由于<code> value</code> 的值与真正的众数 <code>maj</code> 绑定，并且它表示「众数出现的次数比非众数多出了多少次」，那么在最后一步遍历结束后，<code>value</code> 的值为正数；</p>
-<p>在最后一步遍历结束后，<code>count</code> 非负，<code>value</code> 为正数，所以它们不可能互为相反数，只可能相等，即 <code>count == value</code>。因此在最后「一段」中，<code>count</code> 的 <code>value</code> 的变化是同步的，也就是说，<code>candidate</code> 中存储的候选众数就是真正的众数 <code>maj</code>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> candate = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count==<span class="number">0</span>)&#123;</span><br><span class="line">                candate = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            count += candate==nums[i] ? <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> candate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="171-Excel表列序号"><a href="#171-Excel表列序号" class="headerlink" title="171. Excel表列序号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/excel-sheet-column-number/">171. Excel表列序号</a></h4><p>给定一个Excel表格中的列名称，返回其相应的列序号。</p>
-<p>例如，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; 1</span><br><span class="line">B -&gt; 2</span><br><span class="line">C -&gt; 3</span><br><span class="line">...</span><br><span class="line">Z -&gt; 26</span><br><span class="line">AA -&gt; 27</span><br><span class="line">AB -&gt; 28 </span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">titleToNumber</span><span class="params">(<span class="keyword">char</span> * s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">int</span> colum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)&#123;</span><br><span class="line">        colum += (s[i] - <span class="string">&#x27;A&#x27;</span> + <span class="number">1</span>) * <span class="built_in">pow</span>(<span class="number">26</span>, len-i<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> colum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h4><p>给定一个整数 <em>n</em>，返回 <em>n</em>! 结果尾数中零的数量。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 3</span><br><span class="line">输出: 0</span><br><span class="line">解释: 3! = 6, 尾数中没有零。</span><br></pre></td></tr></table></figure>
-<p><strong>方法一</strong><br>计算5点倍数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">trailingZeroes</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">5</span>; i &lt;= n; i+=<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = i;</span><br><span class="line">        <span class="keyword">while</span>(tmp%<span class="number">5</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            count += <span class="number">1</span>;</span><br><span class="line">            tmp/=<span class="number">5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>方法二</strong></p>
-<ol>
-<li>计算 <code>n</code> 中5的倍数。</li>
-<li>计算 <code>n/5</code>中5的倍数。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">trailingZeroes</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)&#123;</span><br><span class="line">        n /= <span class="number">5</span>;</span><br><span class="line">        count += n; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/" data-id="cks67mnf90005f88y0cuk03gx" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -290,6 +314,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/">leetcode 刷题11</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -339,9 +373,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/" data-id="cks67mnf80004f88y4tvkgowv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/" data-id="cks680z6q0005uc8y35slglbo" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
     </footer>
   </div>
   
@@ -358,6 +394,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/">leetcode 刷题10</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -424,9 +470,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/" data-id="cks67mnf80003f88yg78effcq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/" data-id="cks680z6p0003uc8y14cf7f24" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
     </footer>
   </div>
   
@@ -443,6 +491,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/">leetcode 刷题09</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -494,9 +552,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/" data-id="cks67mnf70002f88yfeqxaj96" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/" data-id="cks680z6l0001uc8y4syk1lu2" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
     </footer>
   </div>
   
@@ -513,6 +573,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9808/">leetcode 刷题08</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -538,9 +608,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9808/" data-id="cks67mnf50001f88ybw5y0ou8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9808/" data-id="cks680z6q0004uc8y39twd7i6" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
     </footer>
   </div>
   
@@ -557,6 +629,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9807/">leetcode 刷题07</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -629,9 +711,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9807/" data-id="cks67mnez0000f88yclnd2i9a" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9807/" data-id="cks680z6h0000uc8yg4py82db" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
     </footer>
   </div>
   
@@ -648,6 +732,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9814/">leetcode 刷题14</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -692,9 +786,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9814/" data-id="cks67mnfa0006f88ybeid1mua" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9814/" data-id="cks680z6y000auc8yd5mbb63k" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li></ul>
+
     </footer>
   </div>
   
@@ -733,7 +829,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/10/%E4%B8%80%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6/" data-id="cks67mnfk0008f88y68807b5b" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/10/%E4%B8%80%E5%85%83%E5%BE%AE%E5%88%86%E5%AD%A6/" data-id="cks680z70000fuc8yf4zk1edb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag">高等数学</a></li></ul>
@@ -758,7 +854,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag">高等数学</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode%E5%88%B7%E9%A2%98/" rel="tag">leetcode刷题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag">高等数学</a></li></ul>
     </div>
   </div>
 
@@ -768,7 +864,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">高等数学</a>
+      <a href="/tags/leetcode%E5%88%B7%E9%A2%98/" style="font-size: 20px;">leetcode刷题</a> <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">高等数学</a>
     </div>
   </div>
 
@@ -790,23 +886,23 @@
       <ul>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/">(no title)</a>
+            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/">leetcode 刷题12</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9812%20/">(no title)</a>
+            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9813/">leetcode 刷题13</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/">(no title)</a>
+            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9811/">leetcode 刷题11</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/">(no title)</a>
+            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9810/">leetcode 刷题10</a>
           </li>
         
           <li>
-            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/">(no title)</a>
+            <a href="/2021/08/10/leetcode%20%E5%88%B7%E9%A2%9809/">leetcode 刷题09</a>
           </li>
         
       </ul>
